@@ -4,8 +4,8 @@ import CampoTexto from "../CampoTexto";
 import ListaSuspensa from "../ListaSuspensa";
 import "./Formulario.css";
 
-const Formulario = () => {
-  const times = [
+const Formulario = (props) => {
+  const cursos = [
     "Programação",
     "Front-End",
     "Data Science",
@@ -13,16 +13,23 @@ const Formulario = () => {
     "UX e Design",
     "Mobile",
     "Inovação e Gestão",
+    "Inglês",
+    "Inteligência Artificial",
   ];
 
   const [nome, setNome] = useState("");
-  const [cargo, setCargo] = useState("");
+  const [nota, setNota] = useState("");
   const [imagem, setImagem] = useState("");
-  const [time, setTime] = useState("");
+  const [curso, setCurso] = useState("");
 
   const aoSalvar = (evento) => {
     evento.preventDefault();
-    console.log("Formulário submetido => ", nome, cargo, imagem, time);
+    props.aoAlunoCadastrado({
+      nome,
+      nota,
+      imagem,
+      curso
+    })
   };
 
 
@@ -32,18 +39,18 @@ const Formulario = () => {
       <form onSubmit={aoSalvar}>
         <h2>Preencha os dados para criar o card dos alunos destaques</h2>
         <CampoTexto
-          obrigatorio={true}
+          required={true}
           label="Nome"
           placeholder="Digite seu nome"
           valor={nome}
           aoAlterado={valor => setNome(valor)}
         />
         <CampoTexto
-          obrigatorio={true}
-          label="Cargo"
+          required={true}
+          label="Nota"
           placeholder="Digite seu cargo"
-          valor={cargo}
-          aoAlterado={valor => setCargo(valor)}
+          valor={nota}
+          aoAlterado={valor => setNota(valor)}
         />
         <CampoTexto
           label="Imagem"
@@ -53,10 +60,10 @@ const Formulario = () => {
         />
         <ListaSuspensa 
           required={true} 
-          label="Time" 
-          itens={times} 
-          valor={time} 
-          aoAlterado={valor => setTime(valor)} 
+          label="Curso" 
+          itens={cursos} 
+          valor={curso} 
+          aoAlterado={valor => setCurso(valor)} 
         />
         <Botao>Criar Card</Botao>
       </form>

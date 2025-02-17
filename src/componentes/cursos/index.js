@@ -1,11 +1,14 @@
 import "./Curso.css";
 
 const Cursos = (props) => {
-    return (
-        <section className="cursos">
-            <h3>{props.nome}</h3>
-        </section>
-    )  
-}
+  return (
+    <section
+      className="cursos"
+      style={{ backgroundColor: props.corSecundaria }}
+    >
+      <h3 style={{ borderColor: props.corPrimaria }}>{props.nome}</h3>
+    </section>
+  );
+};
 
-    export default Cursos;
+export default Cursos;

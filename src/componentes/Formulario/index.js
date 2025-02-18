@@ -4,19 +4,8 @@ import CampoTexto from "../CampoTexto";
 import ListaSuspensa from "../ListaSuspensa";
 import "./Formulario.css";
 
-const Formulario = (props) => {
-  
-  const cursos = [
-    "Programação",
-    "Front-End",
-    "Data Science",
-    "Devops",
-    "UX e Design",
-    "Mobile",
-    "Inovação e Gestão",
-    "Inglês",
-    "Inteligência Artificial",
-  ];
+
+const Formulario = (props) => { 
 
   const [nome, setNome] = useState("");
   const [nota, setNota] = useState("");
@@ -24,13 +13,17 @@ const Formulario = (props) => {
   const [curso, setCurso] = useState("");
 
   const aoSalvar = (evento) => {
-    evento.preventDefault();
+    evento.preventDefault();    
     props.aoAlunoCadastrado({
       nome,
       nota,
       imagem,
       curso
-    })
+    });
+    setNome("");
+    setNota("");
+    setImagem("");
+    setCurso("");
   };
 
 
@@ -62,7 +55,7 @@ const Formulario = (props) => {
         <ListaSuspensa 
           required={true} 
           label="Curso" 
-          itens={cursos} 
+          itens={props.cursos} 
           valor={curso} 
           aoAlterado={valor => setCurso(valor)} 
         />

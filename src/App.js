@@ -3,6 +3,7 @@ import Banner from "./componentes/Banner";
 
 import Formulario from "./componentes/Formulario";
 import Cursos from './componentes/cursos';
+import Rodape from './componentes/rodape';
 
 function App() {
 
@@ -13,12 +14,12 @@ function App() {
       corSecundaria: "#d9f7e9"
     },
     {
-      nome: "Front-End",
+      nome: "Front-end",
       corPrimaria: "#82cffa",
       corSecundaria: "#e8f8ff"
     },
     {
-      nome: "Data Science",
+      nome: "Ciência de Dados",
       corPrimaria: "#a6d157",
       corSecundaria: "#f0f8e2"
     },
@@ -55,17 +56,24 @@ function App() {
   ];
   
   const [alunos, setAlunos] = useState([]);
+  
 
-const aoNovoAlunoAdicionado = (aluno) => {
-  console.log(aluno);
+const aoNovoAlunoAdicionado = (aluno) => {  
   setAlunos([...alunos, aluno]);
 }
 
   return (
     <div className="App">
       <Banner />
-      <Formulario aoAlunoCadastrado = {aluno => aoNovoAlunoAdicionado(aluno)} />
-      {cursos.map(curso =>  <Cursos key={curso.nome} nome= {curso.nome} corPrimaria={curso.corPrimaria} corSecundaria={curso.corSecundaria}/>)}      
+      <Formulario cursos={cursos.map(curso => curso.nome)} aoAlunoCadastrado = {aluno => aoNovoAlunoAdicionado(aluno)} />
+      {cursos.map(curso =>  <Cursos 
+      key={curso.nome} 
+      nome= {curso.nome} 
+      corPrimaria={curso.corPrimaria} 
+      corSecundaria={curso.corSecundaria}
+      alunos={alunos.filter(aluno => aluno.curso === curso.nome)} 
+      />)}
+      <Rodape/>       
     </div>
   );
 }

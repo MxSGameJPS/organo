@@ -45,7 +45,7 @@ function App() {
 
   const inicial = [
     {
-      nome: "JULIANA AMOASEI",
+      nome: "JULIANe AMOASEI",
       cargo: "Desenvolvedora de software e instrutora",
       imagem:
         "https://www.alura.com.br/assets/img/lideres/juliana-amoasei.1647533644.jpeg",
